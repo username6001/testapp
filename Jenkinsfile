@@ -1,19 +1,21 @@
 node {
     def app
 
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
+    // stage('Clone repository') {
+    //     /* Let's make sure we have the repository cloned to our workspace */
+    //   steps {
+    //     checkout scm
+    //   }
+    // }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
       steps {
-        checkout scm
+        app = docker.build("gcr.io/alan-stage/testapp")
+    
       }
     }
-
-    // stage('Build image') {
-    //     /* This builds the actual image; synonymous to
-    //      * docker build on the command line */
-
-    //     app = docker.build("gcr.io/alan-stage/testapp")
-    // }
 
     // stage('Test image') {
     //     /* Ideally, we would run a test framework against our image.
