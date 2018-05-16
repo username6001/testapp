@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent none
   stages {
     stage('Build image') {
       app = docker.build("[id-of-your-project-as-in-google-url]/[name-of-the-artifact]")
