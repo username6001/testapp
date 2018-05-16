@@ -2,13 +2,13 @@ pipeline {
   agent none
   stages {
     stage('Build image') {
-      app = docker.build("[id-of-your-project-as-in-google-url]/[name-of-the-artifact]")
+      app = docker.build("gcr.io/alan-stage/testapp")
     }
-    stage('Push image') {
-      docker.withRegistry('https://gcr.io', 'gcr:[credentials-id]') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
-      }
-    }
+    // stage('Push image') {
+    //   docker.withRegistry('https://gcr.io', 'gcr:[credentials-id]') {
+    //     app.push("${env.BUILD_NUMBER}")
+    //     app.push("latest")
+    //   }
+    // }
   }
 }
